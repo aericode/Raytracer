@@ -4,12 +4,13 @@
 #include "material.h"
 #include "ray.h"
 #include "surfaceInteraction.h"
+#include <memory>
 
 
 
 class Primitive {
     public:
-    	Material material;
+    	std::shared_ptr<Material> material;
         ~Primitive(){}
         virtual bool intersect( const ray& r, float t_min, float t_max, SurfaceInteraction& inter) = 0;
         // Simpler & faster version of intersection that only return true/false.

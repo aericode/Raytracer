@@ -4,12 +4,13 @@
 #include "vec3.h"
 #include "primitive.h"
 #include "surfaceInteraction.h"
+#include <memory>
 
 typedef vec3 Point;
 
 Sphere::Sphere(){};
 
-Sphere::Sphere(Point center, float radius, Material material){
+Sphere::Sphere(Point center, float radius, std::shared_ptr<Material> material){
 	this->center   = center;
 	this->radius   = radius;
 	this->material = material;

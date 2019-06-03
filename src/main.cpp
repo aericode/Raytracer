@@ -35,7 +35,7 @@ int main(){
 
 
 	cam = cameraFromJSON(obj);
-	world = primitivesFromJSON(obj);
+	world = primitivesFromJSON(obj,material_list);
 
 	background = make_shared<Background>();
 

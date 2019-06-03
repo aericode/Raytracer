@@ -80,7 +80,7 @@ shared_ptr<Camera> cameraFromJSON(JSON obj){
     }
 }
 
-shared_ptr<Primitive_list> primitivesFromJSON(JSON obj){
+shared_ptr<Primitive_list> primitivesFromJSON(JSON obj, std::vector< shared_ptr<Material> > material_list){
     if (obj["primitives"].IsNull()){
         std::cout<<"no instructions for primitives in JSON file"<<std::endl;
         return nullptr;
@@ -94,6 +94,8 @@ shared_ptr<Primitive_list> primitivesFromJSON(JSON obj){
 
         Point aux;
         float radius;
+        std::string material_name;
+        shared_ptr<Material> aux_material;
 
 
         for(int i =0; i < num_primitives; i++){
@@ -104,7 +106,16 @@ shared_ptr<Primitive_list> primitivesFromJSON(JSON obj){
 
             radius = obj["primitives"][i][3].ToFloat();
 
-            list[i] = new Sphere(aux, radius);
+            material_name = obj["primitives"][i][4].ToString();
+
+            for(int i = 0;i < material_list.size();i++){
+                if(material_name==material_list[i]->name){
+                    aux_material = material_list[i];
+                    break;
+                }
+            }
+
+            list[i] = new Sphere(aux, radius, aux_material);
         }
 
         return make_shared<Primitive_list>(list, num_primitives);
@@ -133,7 +144,7 @@ std::vector< shared_ptr<Material> > materialsFromJSON(JSON obj){
             aux[1] = obj["materials"][i][2].ToInt();
             aux[2] = obj["materials"][i][3].ToInt();            
 
-            shared_ptr<Material> to_add = make_shared<Material>(aux_name,Color(aux[1],aux[2],aux[3]));
+            shared_ptr<Material> to_add = make_shared<Material>(aux_name,Color(aux[0],aux[1],aux[2]));
 
             material_list.push_back(to_add);
         }

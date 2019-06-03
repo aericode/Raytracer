@@ -26,7 +26,7 @@ Color Camera::flatColor(const ray& r, shared_ptr<Scene> scene){
 	SurfaceInteraction surfaceInteraction;
 
 	if(scene->intersect(r,MINSIGHT,MAXSIGHT, surfaceInteraction)){
-		return surfaceInteraction.primitive->material.color;
+		return surfaceInteraction.primitive->material->color;
 	}
 
 	return scene->sampleBG(r);
