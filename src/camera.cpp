@@ -23,8 +23,10 @@ Camera::Camera(Point origin, Point vertical, Point horizontal, Point corner){
 
 
 Color Camera::flatColor(const ray& r, shared_ptr<Scene> scene){
-	if(scene->intersect_p(r,MINSIGHT,MAXSIGHT)){
-		return vec3(1,0,0);
+	SurfaceInteraction surfaceInteraction;
+
+	if(scene->intersect(r,MINSIGHT,MAXSIGHT, surfaceInteraction)){
+		return surfaceInteraction.primitive->material.color;
 	}
 
 	return scene->sampleBG(r);

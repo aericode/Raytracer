@@ -17,19 +17,29 @@ using json::JSON;
 typedef vec3 Color;
 typedef vec3 Point;
 
+std::vector< shared_ptr<Material> > material_list;
+
 shared_ptr<Camera> cam;
 shared_ptr<Primitive_list> world;
 shared_ptr<Background> background;
 
-	//TODO inicializar cena
 shared_ptr<Scene> scene;
 
 int main(){
+
+
 	
 	JSON obj = parseFile("./jsonInput/scene.json");
 
+	material_list = materialsFromJSON(obj);
+
+
 	cam = cameraFromJSON(obj);
 	world = primitivesFromJSON(obj);
+
+	background = make_shared<Background>();
+
+	scene = make_shared<Scene>(world, background);
 
 	int nx = 200;
 	int ny = 100;
@@ -46,7 +56,7 @@ int main(){
 			ray r = cam->traceRay(u,v);
 
 			//Col recebe a cor do que o raio atinge
-			Color col = cam->hitColor(r, world);
+			Color col = cam->flatColor(r, scene);
 
 			int ir  = int(255.99*col[0]);
 			int ig  = int(255.99*col[1]);

@@ -110,3 +110,35 @@ shared_ptr<Primitive_list> primitivesFromJSON(JSON obj){
         return make_shared<Primitive_list>(list, num_primitives);
     }
 }
+
+std::vector< shared_ptr<Material> > materialsFromJSON(JSON obj){
+    if (obj["materials"].IsNull()){
+        std::cout<<"no instructions for materials in JSON file"<<std::endl;
+        return std::vector< shared_ptr<Material> > ();
+    }else{
+        int num_primitives = obj["materials"].length();
+
+
+        std::vector< shared_ptr<Material> > material_list;
+
+        Color aux;
+        std::string aux_name;
+
+
+        for(int i =0; i < num_primitives; i++){
+
+            aux_name = obj["materials"][i][0].ToString();
+
+            aux[0] = obj["materials"][i][1].ToInt();
+            aux[1] = obj["materials"][i][2].ToInt();
+            aux[2] = obj["materials"][i][3].ToInt();            
+
+            shared_ptr<Material> to_add = make_shared<Material>(aux_name,Color(aux[1],aux[2],aux[3]));
+
+            material_list.push_back(to_add);
+        }
+
+        return material_list;
+    }
+
+}

@@ -1,4 +1,4 @@
-
+#include "material.h"
 #include "sphere.h"
 #include "ray.h"
 #include "vec3.h"
@@ -9,9 +9,10 @@ typedef vec3 Point;
 
 Sphere::Sphere(){};
 
-Sphere::Sphere(Point center, float radius){
-	this->center = center;
-	this->radius = radius;
+Sphere::Sphere(Point center, float radius, Material material){
+	this->center   = center;
+	this->radius   = radius;
+	this->material = material;
 }
 
 Sphere::~Sphere(){};

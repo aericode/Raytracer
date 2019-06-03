@@ -1,6 +1,7 @@
 #ifndef PRIMITIVEH
 #define PRIMITIVEH
 
+#include "material.h"
 #include "ray.h"
 #include "surfaceInteraction.h"
 
@@ -8,6 +9,7 @@
 
 class Primitive {
     public:
+    	Material material;
         ~Primitive(){}
         virtual bool intersect( const ray& r, float t_min, float t_max, SurfaceInteraction& inter) = 0;
         // Simpler & faster version of intersection that only return true/false.

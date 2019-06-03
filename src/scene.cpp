@@ -18,5 +18,5 @@ bool Scene::intersect(const ray& r, float t_min, float t_max, SurfaceInteraction
 }
 
 Color Scene::sampleBG(const ray& r){
-	background->sample(r);
+	return background->sample(r);
 }
