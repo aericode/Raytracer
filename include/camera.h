@@ -5,6 +5,7 @@
 #include "ray.h"
 #include "vec3.h"
 #include "scene.h"
+#include "plotter.h"
 
 using namespace std;
 typedef vec3 Point;
@@ -18,6 +19,9 @@ protected:
 	vec3 corner;
 
 public:
+
+	Plotter film;
+
 	//test
 	Camera();
 
@@ -26,6 +30,10 @@ public:
 	Color flatColor(const ray&, shared_ptr<Scene> scene);
 
 	Color hitColor(const ray&, shared_ptr<Scene> scene);
+
+	void changePixel(int, int, Color);
+
+	void plotFile();
 
 	virtual ray traceRay(float, float){}
 };

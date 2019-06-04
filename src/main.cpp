@@ -44,8 +44,8 @@ int main(){
 	int nx = 200;
 	int ny = 100;
 
-
 	Plotter plotter(nx,ny,"./imageOutput/default.ppm");
+	cam->film = plotter;
 
 
 	for (int j = ny-1; j >= 0 ; j--){
@@ -62,11 +62,11 @@ int main(){
 			int ig  = int(255.99*col[1]);
 			int ib  = int(255.99*col[2]);
 
-			plotter.changePixel(i,j, Color(ir,ig,ib));
+			cam->changePixel(i,j, Color(ir,ig,ib));
 			
 		}
 	}
 
-	plotter.plotFile();
+	cam->plotFile();
 	
 }

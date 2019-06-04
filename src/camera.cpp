@@ -1,3 +1,4 @@
+#define BLACK Color(0,0,0)
 #include "ray.h"
 #include "camera.h"
 #include "scene.h"
@@ -41,4 +42,12 @@ Color Camera::hitColor(const ray& r, shared_ptr<Scene> scene){
 	}
 
 	return scene->sampleBG(r);
+}
+
+void Camera::changePixel(int x, int y, Color color = BLACK){
+	film.changePixel(x,y,color);
+}
+
+void Camera::plotFile(){
+	film.plotFile();
 }
