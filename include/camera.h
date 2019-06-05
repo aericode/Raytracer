@@ -7,6 +7,8 @@
 #include "scene.h"
 #include "plotter.h"
 
+class Scene;
+
 using namespace std;
 typedef vec3 Point;
 typedef vec3 Color;

@@ -39,7 +39,7 @@ int main(){
 
 	background = make_shared<Background>();
 
-	scene = make_shared<Scene>(world, background);
+	scene = make_shared<Scene>(world, cam ,background);
 
 	int nx = 200;
 	int ny = 100;

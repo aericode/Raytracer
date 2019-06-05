@@ -1,6 +1,7 @@
 #ifndef SCENEH
 #define SCENEH
 
+#include "camera.h"
 #include "primitive_list.h"
 #include "background.h"
 #include "ray.h"
@@ -8,16 +9,20 @@
 #include "surfaceInteraction.h"
 #include "vec3.h"
 
+class Camera;
+
+
 using namespace std;
 typedef vec3 Color;
 
 class Scene{
 private:
 	shared_ptr<Primitive_list> world;
+	shared_ptr<Camera> camera;
 	shared_ptr<Background> background;
 public:
 	Scene();
-	Scene(shared_ptr<Primitive_list>, shared_ptr<Background> );
+	Scene(shared_ptr<Primitive_list>, shared_ptr<Camera>, shared_ptr<Background>);
 
 	bool intersect( const ray&, float, float, SurfaceInteraction&);
 	bool intersect_p( const ray&, float, float);
