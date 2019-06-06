@@ -39,8 +39,8 @@ int main(){
 	background = make_shared<Background>();
 
 	//YSIZE, XSIZE, OUTPUT FILE
-	Plotter plotter(200,100,"./imageOutput/default.ppm");
-	cam->film = plotter;
+	//Plotter plotter(200,100,"./imageOutput/default.ppm");
+	cam->film = make_shared<Plotter>(200,100,"./imageOutput/default.ppm");
 
 	scene = make_shared<Scene>(world, cam ,background);
 
@@ -48,8 +48,8 @@ int main(){
 
 	
 
-	int nx = scene->camera->film.xSize;
-	int ny = scene->camera->film.ySize;
+	int nx = scene->camera->film->xSize;
+	int ny = scene->camera->film->ySize;
 
 	for (int j = ny-1; j >= 0 ; j--){
 		for(int i = 0; i <  nx; i++){

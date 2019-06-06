@@ -22,7 +22,7 @@ protected:
 
 public:
 
-	Plotter film;
+	shared_ptr<Plotter> film;
 
 	//test
 	Camera();

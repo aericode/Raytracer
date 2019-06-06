@@ -45,9 +45,9 @@ Color Camera::hitColor(const ray& r, shared_ptr<Scene> scene){
 }
 
 void Camera::changePixel(int x, int y, Color color = BLACK){
-	film.changePixel(x,y,color);
+	film->changePixel(x,y,color);
 }
 
 void Camera::plotFile(){
-	film.plotFile();
+	film->plotFile();
 }
