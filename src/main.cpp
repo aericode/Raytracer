@@ -25,10 +25,7 @@ shared_ptr<Background> background;
 
 shared_ptr<Scene> scene;
 
-int main(){
-
-
-	
+void init_engine(){
 	JSON obj = parseFile("./jsonInput/scene.json");
 
 	material_list = materialsFromJSON(obj);
@@ -44,9 +41,12 @@ int main(){
 	//make_shared<Plotter>(200,100,"./imageOutput/default.ppm");
 
 	scene = make_shared<Scene>(world, cam ,background);
+}
 
-	
 
+int main(){
+
+	init_engine();
 	
 
 	int nx = scene->camera->film->xSize;
