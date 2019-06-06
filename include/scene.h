@@ -18,9 +18,10 @@ typedef vec3 Color;
 class Scene{
 private:
 	shared_ptr<Primitive_list> world;
-	shared_ptr<Camera> camera;
 	shared_ptr<Background> background;
 public:
+	shared_ptr<Camera> camera;
+
 	Scene();
 	Scene(shared_ptr<Primitive_list>, shared_ptr<Camera>, shared_ptr<Background>);
 

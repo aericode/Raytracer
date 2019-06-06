@@ -33,20 +33,23 @@ int main(){
 
 	material_list = materialsFromJSON(obj);
 
-
 	cam = cameraFromJSON(obj);
 	world = primitivesFromJSON(obj,material_list);
 
 	background = make_shared<Background>();
 
-	scene = make_shared<Scene>(world, cam ,background);
-
-	int nx = 200;
-	int ny = 100;
-
-	Plotter plotter(nx,ny,"./imageOutput/default.ppm");
+	//YSIZE, XSIZE, OUTPUT FILE
+	Plotter plotter(200,100,"./imageOutput/default.ppm");
 	cam->film = plotter;
 
+	scene = make_shared<Scene>(world, cam ,background);
+
+	
+
+	
+
+	int nx = scene->camera->film.xSize;
+	int ny = scene->camera->film.ySize;
 
 	for (int j = ny-1; j >= 0 ; j--){
 		for(int i = 0; i <  nx; i++){

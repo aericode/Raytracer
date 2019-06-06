@@ -22,7 +22,6 @@ public:
 	int xSize;
 	int ySize;
 	
-
 	Plotter();
 
 	Plotter(int,int,string);
