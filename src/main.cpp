@@ -33,7 +33,7 @@ void init_engine(){
 	cam = cameraFromJSON(obj);
 	world = primitivesFromJSON(obj,material_list);
 
-	background = make_shared<Background>();
+	background = backgroundFromJSON(obj);
 	cam->film = plotterFromJSON(obj);
 
 	scene = make_shared<Scene>(world, cam ,background);

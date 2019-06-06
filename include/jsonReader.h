@@ -169,3 +169,29 @@ shared_ptr<Plotter> plotterFromJSON(JSON obj){
         return make_shared<Plotter>(xSize,ySize,file);
     }
 }
+
+shared_ptr<Background> backgroundFromJSON(JSON obj){
+    int num_colors = obj["background"].length();
+    Color aux_color;
+
+    Color colors[4];
+
+    for(int i = 0; i < num_colors; i++){
+        aux_color[0] = obj["background"][i][0].ToInt();
+        aux_color[1] = obj["background"][i][1].ToInt();
+        aux_color[2] = obj["background"][i][2].ToInt();
+
+        colors[i] = aux_color;
+    }
+
+
+    //repete as cores do interpolator se tiver menos que 4
+    /*
+    if(num_colors < 4 && num_colors > 0){
+        for(int i = num_colors; i < 4; i++){
+            colors[i] = colors[num_colors-1];
+        }
+    }
+    */
+    return make_shared<Background>(colors);
+}
