@@ -34,11 +34,7 @@ void init_engine(){
 	world = primitivesFromJSON(obj,material_list);
 
 	background = make_shared<Background>();
-
-	//YSIZE, XSIZE, OUTPUT FILE
-	//Plotter plotter(200,100,"./imageOutput/default.ppm");
 	cam->film = plotterFromJSON(obj);
-	//make_shared<Plotter>(200,100,"./imageOutput/default.ppm");
 
 	scene = make_shared<Scene>(world, cam ,background);
 }
