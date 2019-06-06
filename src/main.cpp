@@ -40,7 +40,8 @@ int main(){
 
 	//YSIZE, XSIZE, OUTPUT FILE
 	//Plotter plotter(200,100,"./imageOutput/default.ppm");
-	cam->film = make_shared<Plotter>(200,100,"./imageOutput/default.ppm");
+	cam->film = plotterFromJSON(obj);
+	//make_shared<Plotter>(200,100,"./imageOutput/default.ppm");
 
 	scene = make_shared<Scene>(world, cam ,background);
 

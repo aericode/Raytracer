@@ -13,6 +13,7 @@
 #include "sphere.h"
 #include "primitive.h"
 #include "primitive_list.h"
+#include "plotter.h"
 
 
 using json::JSON;
@@ -152,4 +153,19 @@ std::vector< shared_ptr<Material> > materialsFromJSON(JSON obj){
         return material_list;
     }
 
+}
+
+shared_ptr<Plotter> plotterFromJSON(JSON obj){
+    if (obj["plotter"].IsNull()){
+        std::cout<<"no instructions for plotter in JSON file"<<std::endl;
+        return shared_ptr<Plotter> ();
+    }else{
+        int xSize   = obj["plotter"]["x"].ToInt();
+        int ySize   = obj["plotter"]["y"].ToInt();
+        string name = obj["plotter"]["name"].ToString();
+
+        string file = "./imageOutput/" + name + ".ppm";
+
+        return make_shared<Plotter>(xSize,ySize,file);
+    }
 }
