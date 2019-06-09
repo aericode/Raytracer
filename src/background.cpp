@@ -35,6 +35,7 @@ Color Background::sample(const ray& r){
 
 //Color interpolatePixel(float tx, float ty, Color cor00, Color cor10, Color cor01, Color cor11){
 Color Background::sample(const ray& r){
+
 	vec3 unit_direction = unit_vector(r.direction());
 
 	float tx = 0.5*(unit_direction.x() + 1.0);

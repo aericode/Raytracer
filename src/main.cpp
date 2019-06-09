@@ -58,11 +58,12 @@ int main(){
 			//Col recebe a cor do que o raio atinge
 			Color col = cam->flatColor(r, scene);
 
+			/*
 			int ir  = int(255.99*col[0]);
 			int ig  = int(255.99*col[1]);
 			int ib  = int(255.99*col[2]);
-
-			cam->changePixel(i,j, Color(ir,ig,ib));
+	*/
+			cam->changePixel(i,j,col );
 			
 		}
 	}
