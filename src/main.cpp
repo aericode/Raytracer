@@ -11,6 +11,9 @@
 #include "sphere.h"
 #include "plotter.h"
 #include "primitive_list.h"
+#include "integrator.h"
+#include "sample_integrator.h"
+#include "flat_integrator.h"
 
 
 using json::JSON;
@@ -25,6 +28,8 @@ shared_ptr<Background> background;
 
 shared_ptr<Scene> scene;
 
+shared_ptr<Integrator> integrator;
+
 void init_engine(){
 	JSON obj = parseFile("./jsonInput/scene.json");
 
@@ -37,13 +42,17 @@ void init_engine(){
 	cam->film = plotterFromJSON(obj);
 
 	scene = make_shared<Scene>(world, cam ,background);
+	integrator = make_shared<Flat_integrator>(cam);
 }
 
 
 int main(){
 
 	init_engine();
-	
+	integrator->render(*scene);
+
+
+	/*
 
 	int nx = scene->camera->film->xSize;
 	int ny = scene->camera->film->ySize;
@@ -64,5 +73,5 @@ int main(){
 	}
 
 	cam->plotFile();
-	
+	*/
 }

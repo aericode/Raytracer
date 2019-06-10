@@ -8,16 +8,16 @@
 
 typedef vec3 Color;
 
-class SampleIntegrator : public Integrator {
+class Sample_integrator : public Integrator {
 //=== Public interface
 protected:
     std::shared_ptr<Camera> cam;
 public:
-    SampleIntegrator( std::shared_ptr<Camera> );
+    Sample_integrator( std::shared_ptr<Camera> );
 
-    virtual Color Li( const ray&, const Scene&) const = 0;
-    virtual void render( const Scene& );
-    virtual void preprocess( const Scene& );
+    virtual Color Li( ray&, Scene&) = 0;
+    void render( Scene& );
+    void preprocess( Scene& );
 };
 
 #endif

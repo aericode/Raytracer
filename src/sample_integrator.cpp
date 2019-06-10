@@ -1,18 +1,19 @@
 #include "sample_integrator.h"
 #include "camera.h"
 #include "scene.h"
+#include "vec3.h"
 
+typedef vec3 Color;
 
-
-SampleIntegrator::SampleIntegrator( std::shared_ptr<Camera> camera){
+Sample_integrator::Sample_integrator( std::shared_ptr<Camera> camera){
 	cam = camera;
 }
 
 
-void SampleIntegrator::preprocess(const Scene& scene){}
+void Sample_integrator::preprocess( Scene& scene){}
 
 
-void SampleIntegrator::render( const Scene& scene){
+void Sample_integrator::render( Scene& scene){
 
 	preprocess(scene);
 
