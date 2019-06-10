@@ -29,10 +29,6 @@ public:
 
 	Camera(Point, Point, Point, Point);
 
-	Color flatColor(const ray&, shared_ptr<Scene> scene);
-
-	Color hitColor(const ray&, shared_ptr<Scene> scene);
-
 	void changePixel(int, int, Color);
 
 	void plotFile();

@@ -50,28 +50,4 @@ int main(){
 
 	init_engine();
 	integrator->render(*scene);
-
-
-	/*
-
-	int nx = scene->camera->film->xSize;
-	int ny = scene->camera->film->ySize;
-
-	for (int j = ny-1; j >= 0 ; j--){
-		for(int i = 0; i <  nx; i++){
-			float u = float(i) / float (nx);
-			float v = float(j) / float (ny);
-			
-			ray r = cam->traceRay(u,v);
-
-			//Col recebe a cor do que o raio atinge
-			Color col = cam->flatColor(r, scene);
-
-			cam->changePixel(i,j,col);
-			
-		}
-	}
-
-	cam->plotFile();
-	*/
 }
