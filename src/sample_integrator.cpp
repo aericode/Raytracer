@@ -10,9 +10,6 @@ Sample_integrator::Sample_integrator( std::shared_ptr<Camera> camera){
 }
 
 
-void Sample_integrator::preprocess( Scene& scene){}
-
-
 void Sample_integrator::render( Scene& scene){
 
 	preprocess(scene);

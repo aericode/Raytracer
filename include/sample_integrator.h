@@ -17,7 +17,7 @@ public:
 
     virtual Color Li( ray&, Scene&) = 0;
     void render( Scene& );
-    void preprocess( Scene& );
+    virtual void preprocess( Scene& ){};
 };
 
 #endif

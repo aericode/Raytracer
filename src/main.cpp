@@ -14,6 +14,7 @@
 #include "integrator.h"
 #include "sample_integrator.h"
 #include "flat_integrator.h"
+#include "depth_integrator.h"
 
 
 using json::JSON;
@@ -42,7 +43,9 @@ void init_engine(){
 	cam->film = plotterFromJSON(obj);
 
 	scene = make_shared<Scene>(world, cam ,background);
-	integrator = make_shared<Flat_integrator>(cam);
+	
+	//integrator = make_shared<Flat_integrator>(cam);
+	integrator = make_shared<Depth_integrator>(cam,Color(0,0,0),Color(255,255,255));
 }
 
 

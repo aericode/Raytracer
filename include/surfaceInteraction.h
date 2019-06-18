@@ -25,6 +25,7 @@ public:
     Vector wo; // Outgoing direction of light, which is -ray.
     float time; // Time of contact.
     Point2f uv; // Parametric coordinate (u,v) of the hit surface.
+    float ray_t;  // The time parameter of the ray where intersection occurred.
     const Primitive *primitive = nullptr; // Pointer to the primitive.
 };
 

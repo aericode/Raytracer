@@ -11,14 +11,17 @@ typedef vec3 Color;
 
 class Depth_integrator : public Sample_integrator {
 public:
+	Color near_color;
+	Color far_color;
+
 	float zMin;
 	float zMax;
 
 	std::vector<float> zBuffer;
 
-	void preprocess( Scene& );
+	void preprocess ( Scene& );
 
-    Depth_integrator ( std::shared_ptr<Camera> );
+    Depth_integrator ( std::shared_ptr<Camera>, Color, Color );
 
     Color Li( ray&, Scene&);
 };
