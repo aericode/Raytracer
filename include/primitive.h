@@ -12,6 +12,7 @@ class Primitive {
     public:
     	std::shared_ptr<Material> material;
         ~Primitive(){}
+        //return true if hits something and provide information via surfaceinteraction
         virtual bool intersect( const ray& r, float t_min, float t_max, SurfaceInteraction& inter) = 0;
         // Simpler & faster version of intersection that only return true/false.
         // It does not compute the hit point information.

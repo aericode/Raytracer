@@ -38,16 +38,20 @@ Color Background::sample(const ray& r){
 
 	vec3 unit_direction = unit_vector(r.direction());
 
+	//converts the ray into unitary and goes from 0 to 1 on how far is it to each screen's edge (x and y)
 	float tx = 0.5*(unit_direction.x() + 1.0);
 	float ty = 0.5*(unit_direction.y() + 1.0);
 
+	//interpolates colors based on how far is the ray from the origin
 	Color left  = cor00 * (1 - tx) + cor10 * tx;
 	Color right = cor01 * (1 - tx) + cor11 * tx;
 
+	//accounts vertical component
 	Color interpolated = left * (1 - ty) + right * ty;
 	interpolated[0] = (int)interpolated[0];
 	interpolated[1] = (int)interpolated[1];
 	interpolated[2] = (int)interpolated[2];
 
+	//returns resultant color
 	return interpolated;
 }

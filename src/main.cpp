@@ -32,9 +32,12 @@ shared_ptr<Scene> scene;
 
 shared_ptr<Integrator> integrator;
 
+//instantiates every element needed to generate image
 void init_engine(){
+	//turns the file into JSON obj (interpretable by code)
 	JSON obj = parseFile("./jsonInput/scene.json");
 
+	//makes material list, camera, world, scene, background, pixel buffer, materials and integrator from obj
 	material_list = materialsFromJSON(obj);
 
 	cam = cameraFromJSON(obj);
@@ -44,9 +47,7 @@ void init_engine(){
 	cam->film = plotterFromJSON(obj);
 
 	scene = make_shared<Scene>(world, cam ,background);
-	
-	//integrator = make_shared<Normal_integrator>(cam);
-	//integrator = make_shared<Depth_integrator>(cam,Color(0,0,255),Color(255,255,255));
+
 	integrator = integratorFromJSON(obj, cam);
 }
 
@@ -54,5 +55,6 @@ void init_engine(){
 int main(){
 
 	init_engine();
+	//renders the image
 	integrator->render(*scene);
 }

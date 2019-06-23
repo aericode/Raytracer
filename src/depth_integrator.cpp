@@ -22,7 +22,7 @@ void Depth_integrator::preprocess(Scene& scene){
 
 	int nx = scene.camera->film->xSize;
 	int ny = scene.camera->film->ySize;
-
+	//main loop
 	for (int j = ny-1; j >= 0 ; j--){
 		for(int i = 0; i <  nx; i++){
 			float u = float(i) / float (nx);
@@ -33,7 +33,7 @@ void Depth_integrator::preprocess(Scene& scene){
 			SurfaceInteraction surfaceInteraction;
 
 			ray r = cam->traceRay(u,v);
-
+			//gets deepest point
 			if( scene.intersect(r, MINSIGHT, MAXSIGHT, surfaceInteraction) ){
 				current_z = surfaceInteraction.ray_t;
 				if(current_z < zMin) zMin = current_z;
@@ -48,17 +48,19 @@ Color Depth_integrator::Li( ray& r, Scene& scene){
 	SurfaceInteraction surfaceInteraction;
 
 	if( scene.intersect(r, MINSIGHT, MAXSIGHT, surfaceInteraction) ){
+		//gets depth
 		float current_z = surfaceInteraction.ray_t;
-
+		//turns into relative depth
 		float delta = (current_z - zMin)/(zMax - zMin);
-
+		//interpolates it
 		int r = near_color.r() + (far_color.r() - near_color.r()) * delta;
 		int g = near_color.g() + (far_color.g() - near_color.g()) * delta;
 		int b = near_color.b() + (far_color.b() - near_color.b()) * delta;
 
+		//returns result
 		return Color(r,g,b);
 	}else{
-
+		//return far if didn't hit anything
 		return far_color;
 	}
 

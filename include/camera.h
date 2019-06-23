@@ -22,17 +22,21 @@ protected:
 
 public:
 
+	//Buffer where the color of each pixel and image info of the picture are stored
 	shared_ptr<Plotter> film;
 
-	//test
 	Camera();
 
+	//initializes the camera with all the coordinates
 	Camera(Point, Point, Point, Point);
 
+	//asks the buffer to change the color of a pixel
 	void changePixel(int, int, Color);
 
+	//prints all the pixels of the buffer into a file
 	void plotFile();
 
+	//every derived camera must trace a ray
 	virtual ray traceRay(float, float){}
 };
 

@@ -9,12 +9,12 @@ Sample_integrator::Sample_integrator( std::shared_ptr<Camera> camera){
 	cam = camera;
 }
 
-
+//describes general integrator behavior
 void Sample_integrator::render( Scene& scene){
 
 	preprocess(scene);
 
-
+	//main loop
 	int nx = scene.camera->film->xSize;
 	int ny = scene.camera->film->ySize;
 

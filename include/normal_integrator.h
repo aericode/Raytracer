@@ -13,7 +13,7 @@ class Normal_integrator : public Sample_integrator {
 public:
 
     Normal_integrator ( std::shared_ptr<Camera> );
-
+    //assign's a color based on each collision point's normal
     Color Li( ray&, Scene&);
 };
 

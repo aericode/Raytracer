@@ -15,14 +15,17 @@ Color Normal_integrator::Li( ray& r, Scene& scene){
 	SurfaceInteraction surfaceInteraction;
 
 	if(scene.intersect(r,MINSIGHT,MAXSIGHT, surfaceInteraction)){
+		//get the normal of the interaction
 		vec3 normal = surfaceInteraction.n;
+		//turns it's x y z into a color (based on how much it influentiates the vector)
+		int r = ((normal[0] + 1)/2.0 )*255;//x - r
+		int g = ((normal[1] + 1)/2.0 )*255;//y - g
+		int b = ((normal[2] + 1)/2.0 )*255;//z - b
 
-		int r = ((normal[0] + 1)/2.0 )*255;
-		int g = ((normal[1] + 1)/2.0 )*255;
-		int b = ((normal[2] + 1)/2.0 )*255;
-
+		//returns the result
 		return Color(r,g,b);
 	}
 
+	//otherwise get the color of the background
 	return scene.sampleBG(r);
 }

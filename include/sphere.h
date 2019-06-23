@@ -20,9 +20,9 @@ public:
 	Sphere();
 	Sphere(Point, float, std::shared_ptr<Material>);
 	~Sphere();
-
+	//checks for collision with sphere and specifies how a ray interacts with the sphere
     bool intersect( const ray& r, float t_min, float t_max, SurfaceInteraction& inter);
-
+    //checks for collision with sphere
     bool intersect_p( const ray& r, float t_min, float t_max);
 };
 

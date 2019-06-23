@@ -14,6 +14,7 @@ public:
 
     Flat_integrator ( std::shared_ptr<Camera> );
 
+    //get's the color in the scene based only on it's material color
     Color Li( ray&, Scene&);
 };
 
