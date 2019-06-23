@@ -16,12 +16,12 @@ class Primitive;
 class SurfaceInteraction {
 public:
 	SurfaceInteraction(){}
-    SurfaceInteraction(const Point&p,const Vector&n, const Vector&wo, float time,
+    SurfaceInteraction(const Point&p,const Point&n, const Vector&wo, float time,
         const Point2f& uv, const Primitive *pri )
         : p{p}, n{n}, wo{wo}, time{time}, uv{uv}, primitive{pri}{};
 
     Point p; // Contact point.
-    Vector n; // The surface normal.
+    Point n; // The surface normal.
     Vector wo; // Outgoing direction of light, which is -ray.
     float time; // Time of contact.
     Point2f uv; // Parametric coordinate (u,v) of the hit surface.

@@ -31,7 +31,7 @@ bool Sphere::intersect( const ray& r, float t_min, float t_max, SurfaceInteracti
 		if(temp < t_max && temp > t_min){
 			inter.time = temp;
 			inter.p    = r.point_at_parameter(inter.time);
-			inter.n    = ray(center/ radius, inter.p/ radius);
+			inter.n    = (inter.p - center)/radius;
 			inter.wo   = r.getReverse();
 			inter.ray_t= temp/2; //shirley n divide 
 			inter.primitive = this;
@@ -42,7 +42,7 @@ bool Sphere::intersect( const ray& r, float t_min, float t_max, SurfaceInteracti
 		if(temp < t_max && temp > t_min){
 			inter.time = temp;
 			inter.p    = r.point_at_parameter(inter.time);
-			inter.n    = ray(center/radius, inter.p/radius) ;
+			inter.n    = (inter.p - center)/radius;
 			inter.wo   = r.getReverse();
 			inter.primitive = this;
 			return true;
