@@ -45,7 +45,8 @@ void init_engine(){
 	scene = make_shared<Scene>(world, cam ,background);
 	
 	//integrator = make_shared<Flat_integrator>(cam);
-	integrator = make_shared<Depth_integrator>(cam,Color(0,0,255),Color(255,255,255));
+	//integrator = make_shared<Depth_integrator>(cam,Color(0,0,255),Color(255,255,255));
+	integrator = integratorFromJSON(obj, cam);
 }
 
 

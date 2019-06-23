@@ -14,6 +14,10 @@
 #include "primitive.h"
 #include "primitive_list.h"
 #include "plotter.h"
+#include "integrator.h"
+#include "sample_integrator.h"
+#include "flat_integrator.h"
+#include "depth_integrator.h"
 
 
 using json::JSON;
@@ -194,4 +198,47 @@ shared_ptr<Background> backgroundFromJSON(JSON obj){
     }
     */
     return make_shared<Background>(colors);
+}
+
+shared_ptr<Sample_integrator> integratorFromJSON(JSON obj, shared_ptr<Camera> cam){
+    if (obj["integrator"].IsNull()){
+        std::cout<<"no instructions for integrator in JSON file"<<std::endl;
+        return nullptr;
+    }else{
+
+
+        if(obj["integrator"]["type"].ToString()=="flat"){
+            return make_shared<Flat_integrator>(cam);
+        }else if(obj["integrator"]["type"].ToString()=="depth"){
+            Color near;
+            Color far;
+
+            if(obj["integrator"]["near"].IsNull() || obj["integrator"]["far"].IsNull() ){
+                std::cout<<"no color assigned to near or to far, using Black and white"<<std::endl;
+
+                near = Color (0,0,0);
+                far  = Color (255,255,255);
+            }else{
+                int nr, ng, nb, fr, fg, fb;
+
+                nr = obj["integrator"]["near"][0].ToInt();
+                ng = obj["integrator"]["near"][1].ToInt();
+                nb = obj["integrator"]["near"][2].ToInt();
+
+                fr = obj["integrator"]["far"][0].ToInt();
+                fg = obj["integrator"]["far"][1].ToInt();
+                fb = obj["integrator"]["far"][2].ToInt();
+
+                near = Color(nr, ng, nb);
+                far  = Color(fr, fg, fb);
+            }
+
+
+
+            return make_shared<Depth_integrator>(cam,near,far);
+        }else{
+            std::cout<<"JSON integrator type not recognized"<<std::endl;
+            return nullptr;
+        }
+    }
 }
