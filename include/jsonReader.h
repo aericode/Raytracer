@@ -18,6 +18,7 @@
 #include "sample_integrator.h"
 #include "flat_integrator.h"
 #include "depth_integrator.h"
+#include "normal_integrator.h"
 
 
 using json::JSON;
@@ -209,6 +210,8 @@ shared_ptr<Sample_integrator> integratorFromJSON(JSON obj, shared_ptr<Camera> ca
 
         if(obj["integrator"]["type"].ToString()=="flat"){
             return make_shared<Flat_integrator>(cam);
+        }else if(obj["integrator"]["type"].ToString()=="normal"){
+            return make_shared<Normal_integrator>(cam);
         }else if(obj["integrator"]["type"].ToString()=="depth"){
             Color near;
             Color far;

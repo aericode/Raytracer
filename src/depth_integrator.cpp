@@ -16,7 +16,6 @@ Depth_integrator::Depth_integrator(std::shared_ptr<Camera> camera, Color near_co
 }
 
 void Depth_integrator::preprocess(Scene& scene){
-	std::cout<<"processing"<<std::endl;
 
 	zMin = MAXSIGHT; //inicia como max para ser substituído por um menor
 	zMax = MINSIGHT; //inicia como max para ser substituído por um maior
