@@ -18,8 +18,8 @@ Depth_integrator::Depth_integrator(std::shared_ptr<Camera> camera, Color near_co
 void Depth_integrator::preprocess(Scene& scene){
 	std::cout<<"processing"<<std::endl;
 
-	float zMin = MAXSIGHT; //inicia como max para ser substituído por um menor
-	float zMax = MINSIGHT; //inicia como max para ser substituído por um maior
+	zMin = MAXSIGHT; //inicia como max para ser substituído por um menor
+	zMax = MINSIGHT; //inicia como max para ser substituído por um maior
 
 	int nx = scene.camera->film->xSize;
 	int ny = scene.camera->film->ySize;
@@ -37,16 +37,12 @@ void Depth_integrator::preprocess(Scene& scene){
 
 			if( scene.intersect(r, MINSIGHT, MAXSIGHT, surfaceInteraction) ){
 				current_z = surfaceInteraction.ray_t;
-
-				std::cout<<current_z<<std::endl;
-
 				if(current_z < zMin) zMin = current_z;
 				if(current_z > zMax) zMax = current_z;
 
 			}			
 		}
 	}
-
 }
 
 Color Depth_integrator::Li( ray& r, Scene& scene){
@@ -57,9 +53,9 @@ Color Depth_integrator::Li( ray& r, Scene& scene){
 
 		float delta = (current_z - zMin)/(zMax - zMin);
 
-		float r = near_color.r() + (far_color.r() - near_color.r()) * delta;
-		float g = near_color.g() + (far_color.g() - near_color.g()) * delta;
-		float b = near_color.b() + (far_color.b() - near_color.b()) * delta;
+		int r = near_color.r() + (far_color.r() - near_color.r()) * delta;
+		int g = near_color.g() + (far_color.g() - near_color.g()) * delta;
+		int b = near_color.b() + (far_color.b() - near_color.b()) * delta;
 
 		return Color(r,g,b);
 	}else{
@@ -68,19 +64,3 @@ Color Depth_integrator::Li( ray& r, Scene& scene){
 	}
 
 }
-
-
-/*
-Flat_integrator::Flat_integrator(std::shared_ptr<Camera> camera):Sample_integrator(camera){}
-
-Color Flat_integrator::Li( ray& r, Scene& scene){
-	SurfaceInteraction surfaceInteraction;
-
-	if(scene.intersect(r,MINSIGHT,MAXSIGHT, surfaceInteraction)){
-		return surfaceInteraction.primitive->material->color;
-	}
-
-	return scene.sampleBG(r);
-}
-
-*/
