@@ -43,3 +43,5 @@ JSON input:
 		(Depth only)
 		"near" : [r,g,b] objects become this color when close to you
 		"far"  : [r,g,b] objects become this color when close to you
+
+Generated image will be put at imageOutput, with the name specified at "Plotter"
