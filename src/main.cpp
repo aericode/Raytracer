@@ -33,9 +33,9 @@ shared_ptr<Scene> scene;
 shared_ptr<Integrator> integrator;
 
 //instantiates every element needed to generate image
-void init_engine(){
+void init_engine(std::string filename){
 	//turns the file into JSON obj (interpretable by code)
-	JSON obj = parseFile("./jsonInput/scene.json");
+	JSON obj = parseFile(filename);
 
 	//makes material list, camera, world, scene, background, pixel buffer, materials and integrator from obj
 	material_list = materialsFromJSON(obj);
@@ -54,7 +54,7 @@ void init_engine(){
 
 int main(){
 
-	init_engine();
+	init_engine("./jsonInput/scene.json");
 	//renders the image
 	integrator->render(*scene);
 }
