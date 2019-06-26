@@ -8,6 +8,7 @@
 #include <memory>
 #include "surfaceInteraction.h"
 #include "vec3.h"
+#include "light.h"
 
 class Camera;
 
@@ -23,6 +24,7 @@ private:
 	shared_ptr<Background> background;
 public:
 	shared_ptr<Camera> camera;
+	std::vector<shared_ptr<Light>> lights;
 
 	Scene();
 	Scene(shared_ptr<Primitive_list>, shared_ptr<Camera>, shared_ptr<Background>);
