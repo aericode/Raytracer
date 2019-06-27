@@ -5,6 +5,14 @@
 
 typedef vec3 Color;
 
-class Light{};
+class Light{
+public:
+	Color color;
+	float intensity;
+	bool is_ambient;
+
+	Light();
+	Light(Color, float, bool);
+};
 
 #endif
